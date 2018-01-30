@@ -1,0 +1,118 @@
+.. meta::
+  :title: Introduction to CS
+  :date: 30/01/2018
+
+
+Introduction
+~~~~~~~~~~~~
+
+:Cryptology: Science of data security against adversaries.
+
+About the course:
+- not *just* about encryption.
+- not necessarily limited to communications (eg. disk encryption).
+- not all of information security (concerns of social engineering, implementation bugs, risk management, won't be covered)
+
+
+.. example:: basic example
+   How to check that 2 distant files are identical, with small communication between servers?
+   => Compute the hashes (on 512 bits, for example).
+
+
+.. example:: very classical example
+   I (Alice) want to buy something on *itch.io* (Bob).
+   We want a **secure channel**, even though it's totally insecure at the start of the interaction.
+
+   One solution: **TLS/SSL**.
+
+   - STEP 1: **Authentification** (achieved with digital signatures).
+     Alice wants to be certain that this is indeed Bob.
+     Someone else could try to impersonate Bob, after possibly seeing many interactions with Bob.
+
+   - STEP 2: **Handshake** (achieved with public-key encryption).
+     Alice and Bob generate a *shared secret*, over a public channel.
+
+   - STEP 3: **Communication** (with respect to confidentiality) (achieved via symetric encryption).
+     Alice and Bob use this shared key to encrypt and decrypt data.
+
+- Anonymous communications (eg. Tor)
+- E-cash, which we would like to be:
+  * anonymous
+  * authentic (can't be forged)
+  * non-duplicable
+- E-voting
+  * anonimity
+  * impossibility of ballot stuffing
+  * impossibility to coerce
+  * verifiability
+  * authentic (can't be forged)
+  * non-duplicable
+
+
+Computing over encrypted data
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:Homomorphic encryption: From `Enc(m)` and `f`, we can get `Enc(f(m))`.
+:Functional encryption: From `Enc(m)` and `key_f`, we can get `f(m)` (and nothing else).
+:Secure multiparty computation:
+  `k` users with messages `m_1 \dots m_k` interact to compute `f((m_i)_i)` without revealing nothing else.
+
+Cryptography is a *science*:
+- Define the wanted functionality
+- Propose a realization of the protocol
+- Prove that if an attack exists, then one can efficiently solve an algorithmic problem that is presumed intractable.
+
+-> Cryptography is the happy face of complexity theory.
+-> Most cryptography problems have a strong algebraic flavour.
+
+- Non-public protocols should be considered insecure.
+- Source of security should be *concentrated* (typically, only the random choice of a key).
+
+
+.. definition:: Encryption scheme
+
+   Let's denote:
+   - K: Key space.
+   - P: Plain text space.
+   - C: Cipher text space.
+
+   An **encryption scheme** over `K \times P \times C` finite is a triple of algorithms:
+
+   - **KeyGen**: samples a `k` in `K` (probabilistic algorithm).
+   - **Enc**: `K \times P \rightarrow C` (possibly probalistic).
+   - **Dec**: `K \times C \rightarrow P` (typically deterministic).
+
+   :Correctness requirement:
+      `\forall k, m : Dec(k, Enc(k, m)) = m`
+
+Assumptions:
+- `C = Enc(K \times P)`
+- `m` and `k` are independant random variables.
+- Every `k \in K` and `m \in P` have a non null probability of being picked.
+
+.. note::
+   We do not assume the algorithms to be efficient.
+
+.. definition:: Secrecy, Shannon 49
+   .. math::
+     \forall \bar{m} \in P, \bar{c} \in C,
+       Pr\{m = \bar{m} | Enc(k, m) = \bar{c}\} = Pr\{m = \bar{m}\}
+
+   i.e: knowing the ciphertext does not provide any extra information on the message.
+
+.. note::
+   `Pr` is taken over:
+   - the random choice of `m`.
+   - the random choice of `k`.
+   - the internal randomness of `Enc`.
+
+Equivalent formula:
+`Pr\{m = \bar{m} \cup Enc(k, m) = \bar{c}\} = Pr\{m = \bar{m}\} \dot \{Enc(k, m) = \bar{c}\}`
+
+the random variables `m` and `Enc(k, m)` are independent.
+
+.. lemma:: Shannon
+   Perfect secrecy `\Rightarrow |K| \geq |P|`
+
+.. proof::
+   Take `\bar{c} \in C`.
