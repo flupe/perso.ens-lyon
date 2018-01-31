@@ -1,3 +1,5 @@
+.. sectnum::
+
 .. meta::
   :title: Introduction to CS
   :date: 30/01/2018
@@ -9,6 +11,7 @@ Introduction
 :Cryptology: Science of data security against adversaries.
 
 About the course:
+
 - not *just* about encryption.
 - not necessarily limited to communications (eg. disk encryption).
 - not all of information security (concerns of social engineering, implementation bugs, risk management, won't be covered)
@@ -72,9 +75,9 @@ Cryptography is a *science*:
 .. definition:: Encryption scheme
 
    Let's denote:
-   - K: Key space.
-   - P: Plain text space.
-   - C: Cipher text space.
+   - `K`: Key space.
+   - `P`: Plain text space.
+   - `C`: Cipher text space.
 
    An **encryption scheme** over `K \times P \times C` finite is a triple of algorithms:
 

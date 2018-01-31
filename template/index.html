@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/theme.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <title>{{ title }}</title>
+  </head>
+  <body>
+    <!--
+    <header>
+      <nav>
+        <a href="/">about</a>
+        <a href="/">resume</a>
+        <a href="/">contact</a>
+      </nav>
+    </header>
+    -->
+    <div id="wrapper">
+      <section id="sidebar">
+        <h1>Lucas Escot</h1>
+      </section>
+      <main>{{ content | safe }}</main>
+    </div>
+    <footer>
+      This site was generated using <code>docutils</code> and <code>jinja2</code>.
+    </footer>
+  </body>
+</html>
