@@ -16,7 +16,6 @@ About the course:
 - not necessarily limited to communications (eg. disk encryption).
 - not all of information security (concerns of social engineering, implementation bugs, risk management, won't be covered)
 
-
 .. example:: basic example
    How to check that 2 distant files are identical, with small communication between servers?
    => Compute the hashes (on 512 bits, for example).
