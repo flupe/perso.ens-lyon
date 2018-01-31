@@ -9,6 +9,12 @@
 I am currently a first-year MSc student in Computer Science at the `ENS de Lyon <https://ens-lyon.fr>`_ in France.
 I find interest in type theory, logic and functional languages.
 
+.. remark::
+   This is a very important remark.
+
+.. note::
+   A more involved remark for sure.
+
 :fa:`graduation-cap` Background
 -------------------------------
 

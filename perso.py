@@ -5,7 +5,9 @@ import docutils
 from docutils import core
 
 from syntax.writer import HTML5Writer
+
 import syntax.roles
+import syntax.directives.annotations
 
 env = Environment(
     loader=PackageLoader('perso', 'template'),

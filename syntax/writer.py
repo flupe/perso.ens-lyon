@@ -25,6 +25,13 @@ class HTML5Translator(html5.HTMLTranslator):
     def astext(self):
         return ''.join(self.body)
 
+    def visit_annotation(self, node):
+        self.body.append(self.starttag(node, 'div'))
+        print(node)
+
+    def depart_annotation(self, node):
+        self.body.append('</div>')
+
     def visit_icon(self, node):
         self.body.append('<i class="'+ ' '.join(node['classes']) +'"></i>')
 
