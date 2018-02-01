@@ -21,14 +21,21 @@ If you're working on the template and want to build files that weren't modifier 
 perso build --force
 ```
 
+To view the result, and in order for the CSS to work properly, it is advised to launch a local server at the root of ``build/``.
+
+.. code::
+
+   cd build
+   python -m http.server
+
 
 About ReST
 ~~~~~~~~~~
 
 Since this tool is built upon ``docutils``, the default syntax of ReST has been extended a bit.
 
-What you define with the `meta` directive will be given to the template being used.
-Note that the `:template:` attribute allows you to specify which view of the template you want to render your content in.
+What you define with the ``meta`` directive will be given to the template being used.
+Note that the ``:template:`` attribute allows you to specify which view of the template you want to render your content in.
 
 For example:
 
