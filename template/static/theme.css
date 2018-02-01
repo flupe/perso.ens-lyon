@@ -1,0 +1,193 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #545e6c;
+  background: #fff;
+  font-size: 16px;
+  display: flex;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 50px;
+  margin: 0;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #3f4650;
+  margin: 0 0 20px 0;
+}
+
+code {
+  font-family: 'Source Code Pro', monospace;
+}
+
+a {
+  color: #35776d;
+  transition: all 0.4s ease-in-out;
+}
+
+a:hover { color: #1d423c; }
+a:focus { text-decoration: none; }
+
+body > header {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+p { line-height: 1.54; }
+
+#wrapper {
+  display: flex;
+  max-width: 960px;
+  margin: 0 auto;
+  flex: 1;
+}
+
+main > section {
+  margin-bottom: 50px;
+}
+
+main p {
+  margin: 0 0 1em;
+}
+
+main dl { margin-bottom: 30px; }
+main dl:last-child { margin-bottom: 0; }
+main dl p { margin: 0 }
+main dt {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+main dd {
+  font-weight: 300;
+  opacity: 0.7;
+  margin-bottom: 20px;
+}
+
+main dd:last-child { margin-bottom: 0; }
+
+main li p:last-child {
+  margin: 0;
+  padding: 0;
+}
+
+main li { margin-bottom: 10px; }
+
+main h2, main h1 {
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 24px;
+  position: relative;
+}
+
+main .sectnum {
+  font-size: .8em;
+  margin-right: .3em;
+  opacity: .8;
+}
+
+main h1 i,
+main h2 i {
+  display: inline-box;
+  width: 30px;
+  height: 30px;
+  margin-right: 15px;
+  color: #fff;
+  font-size: 16px;
+  background: #35776d;
+  padding-top: 7px;
+  text-align: center;
+  background-clip: padding-box;
+  border-radius: 50%;
+  position: relative;
+  top: -3px;
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+/* Statements */
+main .statement {
+  margin: 30px 0;
+}
+
+main .statement > figcaption {
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  font-size: 13px;
+  opacity: .8;
+  padding-left: 10px;
+}
+
+main .statement div > p:last-child { margin: 0; }
+
+main .statement > div {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 2px;
+}
+
+main .definition > div { border-left: 8px solid #70a087; }
+main .lemma > div { border-left: 8px solid #e0b731; }
+main .proof > div { border-left: 8px solid #70a087; }
+main .theorem > div { border-left: 8px solid #4d8ea0; }
+main .definition > div { border-left: 8px solid #9483aa; }
+
+/* Annotations */
+main .annotation {
+  border-left: 1px solid;
+  border-radius: 3px;
+  padding: 10px 0 10px 15px;
+  margin: 20px 0;
+}
+
+main .annotation::before {
+  display: block;
+  margin-bottom: .3em;
+  font-weight: 300;
+}
+
+main .annotation > p:last-child { margin-bottom: 0; }
+
+main .remark {
+  border-color: #e0b731;
+  background: rgba(209, 187, 25, .05);
+}
+main .remark::before {
+  content: 'RK';
+  color: #c19915;
+}
+
+main .note { border-color: #4d8ea0; }
+main .note::before {
+  content: 'NB';
+  color: #4d8ea0;
+}
+
+#sidebar { flex: 0 0 14em; }
+#sidebar > h1 {
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+footer {
+  margin-top: 50px;
+  font-size: 14px;
+  text-align: center;
+}
+
+footer code { font-size: 12px; }
+
+@media (max-width: 740px) {
+  body {
+    padding: 2em;
+  }
+
+  #wrapper {
+    display: block;
+  }
+}

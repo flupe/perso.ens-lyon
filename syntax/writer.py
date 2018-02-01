@@ -21,16 +21,39 @@ class HTML5Translator(html5.HTMLTranslator):
         self.stylesheet = []
 
         self.metadata = {}
+        self.math_output = 'mathjax'
 
     def astext(self):
         return ''.join(self.body)
 
+    def visit_section(self, node):
+        self.section_level += 1
+        self.body.append(self.starttag(node, 'section'))
+
+    def depart_section(self, node):
+        self.section_level -= 1
+        self.body.append('</section>')
+
     def visit_annotation(self, node):
         self.body.append(self.starttag(node, 'div'))
-        print(node)
 
     def depart_annotation(self, node):
         self.body.append('</div>')
+
+    def visit_statement(self, node):
+        self.body.append(self.starttag(node, 'figure'))
+        self.body.append('<figcaption>')
+        self.body.append(node['type'])
+
+        if 'title' in node:
+            self.body.append(': ' + node['title'])
+
+        self.body.append('</figcaption>')
+        self.body.append(self.starttag({}, 'div'))
+
+    def depart_statement(self, node):
+        self.body.append('</div>')
+        self.body.append('</figure>')
 
     def visit_icon(self, node):
         self.body.append('<i class="'+ ' '.join(node['classes']) +'"></i>')

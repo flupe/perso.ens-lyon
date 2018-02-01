@@ -5,8 +5,6 @@ from docutils.parsers.rst.roles import set_classes
 
 from syntax import nodes
 
-""" Generic directive for annotations related to the main content. """
-
 class Annotation(Directive):
     option_spec = {'class': directives.class_option}
     has_content = True
@@ -27,7 +25,6 @@ class Annotation(Directive):
         self.state.nested_parse(self.content, self.content_offset, node)
 
         return [node]
-
 
 class Remark(Annotation): pass
 class Note(Annotation): pass

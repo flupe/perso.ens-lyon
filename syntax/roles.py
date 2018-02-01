@@ -3,7 +3,7 @@ from docutils.parsers.rst import directives
 
 from syntax import nodes
 
-""" FontAwesome custom role """
+# FontAwesome custom role
 def fa_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
     classes = ['fas', 'fa-' + text]
     roles.set_classes(options)

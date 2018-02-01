@@ -1,5 +1,6 @@
-import argparse
-import os.path
+import argparse, os, shutil
+from os.path import join, relpath, getmtime, isfile, isdir
+import glob
 from jinja2 import Environment, PackageLoader, select_autoescape
 import docutils
 from docutils import core
@@ -8,6 +9,7 @@ from syntax.writer import HTML5Writer
 
 import syntax.roles
 import syntax.directives.annotations
+import syntax.directives.statements
 
 env = Environment(
     loader=PackageLoader('perso', 'template'),
@@ -16,28 +18,53 @@ env = Environment(
     lstrip_blocks=True,
 )
 
+# TODO: move this the fuck away
+CONTENT_DIR = 'content/'
+BUILD_DIR = 'build/'
+
 def main():
     """ Entry point for the `perso` static site builder. """
     parser = argparse.ArgumentParser(
             description="Build lescot's personal site.")
+    subparsers = parser.add_subparsers()
+
+    parser_build = subparsers.add_parser('build')
+    parser_build.set_defaults(func=build)
 
     args = parser.parse_args()
+    args.func()
 
-    # directives.register_directive('section', SectionDirective)
-    # directives.register_directive('timeline', TimelineDirective)
-    # directives.register_directive('definition', DefinitionDirective)
-
-    writer = HTML5Writer()
-
-    with open('content/index.rst') as source:
-        content = core.publish_parts(source = source.read(), writer = writer)
-        # parser = Parser()
-        # parser.parse(source.read(), document)
-
+def build():
     template = env.get_template('index.html')
-    output = template.render(content = content['fragment'], **content['meta'])
+
+    os.makedirs(BUILD_DIR, exist_ok=True)
+
+    # copy template static files to build dir
+    if isdir('template/static/'):
+        shutil.rmtree(join(BUILD_DIR, 'static/'), ignore_errors=True)
+        shutil.copytree('template/static/', join(BUILD_DIR, 'static/'))
 
 
-    with open('build/index.html', 'w') as target:
-        target.write(output)
+    for root, dirs, files in os.walk(CONTENT_DIR):
+        for filename in files:
+            if not filename.endswith('.rst'):
+                continue
+
+            src = join(root, filename)
+            name, ext = os.path.splitext(filename)
+            dst = join(BUILD_DIR, relpath(root, CONTENT_DIR), name + '.html')
+
+            if isfile(dst) and getmtime(dst) > getmtime(src):
+                continue
+
+            print("Building %s ..." % src)
+
+            with open(src) as source:
+                content = core.publish_parts(source = source.read(), writer = HTML5Writer())
+                output = template.render(content = content['fragment'], **content['meta'])
+
+                os.makedirs(os.path.dirname(dst), exist_ok=True)
+
+                with open(dst, 'w+') as target:
+                    target.write(output)
 
