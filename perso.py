@@ -29,12 +29,13 @@ def main():
     subparsers = parser.add_subparsers()
 
     parser_build = subparsers.add_parser('build')
+    parser_build.add_argument('--force', help='rebuild every file', action='store_true')
     parser_build.set_defaults(func=build)
 
     args = parser.parse_args()
-    args.func()
+    args.func(args)
 
-def build():
+def build(args):
     template = env.get_template('index.html')
 
     os.makedirs(BUILD_DIR, exist_ok=True)
@@ -54,7 +55,7 @@ def build():
             name, ext = os.path.splitext(filename)
             dst = join(BUILD_DIR, relpath(root, CONTENT_DIR), name + '.html')
 
-            if isfile(dst) and getmtime(dst) > getmtime(src):
+            if not(args.force) and isfile(dst) and getmtime(dst) > getmtime(src):
                 continue
 
             print("Building %s ..." % src)

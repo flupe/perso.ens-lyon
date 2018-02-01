@@ -45,13 +45,9 @@ p { line-height: 1.54; }
   flex: 1;
 }
 
-main > section {
-  margin-bottom: 50px;
-}
+main > section { margin-bottom: 50px; }
 
-main p {
-  margin: 0 0 1em;
-}
+main p { margin: 0 0 1em; }
 
 main dl { margin-bottom: 30px; }
 main dl:last-child { margin-bottom: 0; }
@@ -134,8 +130,8 @@ main .statement > div {
 main .definition > div { border-left: 8px solid #70a087; }
 main .lemma > div { border-left: 8px solid #e0b731; }
 main .proof > div { border-left: 8px solid #70a087; }
-main .theorem > div { border-left: 8px solid #4d8ea0; }
-main .definition > div { border-left: 8px solid #9483aa; }
+main .definition > div { border-left: 8px solid #4d8ea0; }
+main .theorem > div { border-left: 8px solid #9483aa; }
 
 /* Annotations */
 main .annotation {
@@ -168,11 +164,24 @@ main .note::before {
   color: #4d8ea0;
 }
 
-#sidebar { flex: 0 0 14em; }
+#sidebar {
+  flex: 0 0 14em;
+  margin-right: 2em;
+}
+
 #sidebar > h1 {
   text-transform: uppercase;
   font-weight: 300;
 }
+
+#sidebar > ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#sidebar > ul li i { margin-right: 10px; }
+#sidebar > ul li { margin-bottom: 10px; }
 
 footer {
   margin-top: 50px;

@@ -10,6 +10,10 @@
 I am currently a first-year MSc student in Computer Science at the `ENS de Lyon <https://ens-lyon.fr>`_ in France.
 I find interest in type theory, logic and functional languages.
 
+.. theorem:: you should hire me
+
+   With high probability, you should hire me.
+
 
 :fa:`graduation-cap` Background
 -------------------------------
