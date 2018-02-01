@@ -15,11 +15,11 @@ Usage
 Write your content as ``.rst`` files in the ``content/`` folder.
 Then, run ``perso build`` from the main directory. It should create a ``build/`` folder and produce everything needed.
 
-If you're working on the template and want to build files that weren't modifier since the last build, you can pass an additional flag:
+If you're working on the template and want to build files that weren't modifiers since the last build, you can pass an additional flag:
 
-```
-perso build --force
-```
+.. code::
+
+   perso build --force
 
 To view the result, and in order for the CSS to work properly, it is advised to launch a local server at the root of ``build/``.
 
@@ -48,26 +48,28 @@ This content will be rendered in *a single-column view*.
 
 A few new directives are aivailable to take math notes:
 
-.. code::
+.. code:: rst
 
-   .. lemma:: some lemma
+   .. lemma:: Some Lemma
 
-      a named lemma
+      A named lemma entitled *Some Lemma*.
+
 
    .. theorem::
 
-      the content of some unnamed theorem
+      The content of some unnamed theorem.
+
 
    .. proof::
 
-      a proof too
-
-   .. definition:: a definition block
-
-      a named definition
+      We can write proofs too.
 
 
+   .. definition:: A definition block
 
-   .. note:: some note about the content
+      A named definition.
 
-   .. remark:: an additional remark about the content
+
+   .. note:: Some note about the content.
+
+   .. remark:: An additional remark about the content
