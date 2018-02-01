@@ -36,7 +36,7 @@ def main():
     args.func(args)
 
 def build(args):
-    template = env.get_template('index.html')
+    templates = {}
 
     os.makedirs(BUILD_DIR, exist_ok=True)
 
@@ -62,8 +62,18 @@ def build(args):
 
             with open(src) as source:
                 content = core.publish_parts(source = source.read(), writer = HTML5Writer())
-                output = template.render(content = content['fragment'], **content['meta'])
 
+                if 'template' in content['meta']:
+                    template = content['meta']['template']
+                else:
+                    template = 'index'
+
+                if template not in templates:
+                    template = templates[template] = env.get_template(template + '.html')
+                else:
+                    template = templates[template]
+
+                output = template.render(content = content['fragment'], **content['meta'])
                 os.makedirs(os.path.dirname(dst), exist_ok=True)
 
                 with open(dst, 'w+') as target:

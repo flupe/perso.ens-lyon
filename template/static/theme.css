@@ -45,6 +45,8 @@ p { line-height: 1.54; }
   flex: 1;
 }
 
+#wrapper.single { max-width: 680px; }
+
 main > section { margin-bottom: 50px; }
 
 main p { margin: 0 0 1em; }

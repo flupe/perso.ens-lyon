@@ -4,6 +4,7 @@
 .. meta::
   :title: Introduction to CS
   :date: 30/01/2018
+  :template: single
 
 
 Introduction
